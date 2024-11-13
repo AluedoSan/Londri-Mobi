@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'map/css/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: #8b1c1c;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1 style="text-align: center;">Registro de conta</h1>
+    <div class="main">
+        <div class="container">
+            <h3>Criar conta na Londri Mobi é fácil e rápido!</h3>
+            <h3>Junte-se a nós!</h3>
+            <div class="form">
+                <form action="/map/register/" method="post">
+                    {% csrf_token %}
+                    <input type="text" required class="inputs" name="user" placeholder="Nome" id="user">
+                    <input type="text" required class="inputs" name="user_second" placeholder="Sobrenome" id="user_second">
+                    <input type="email" required class="inputs" name="email" id="email" placeholder="E-mail">
+                    <input type="password" required name="password" id="password" placeholder="Senha" class="inputs">
+                    <input type="password" required name="password_confirm" id="password_confirm" oninput="checkPasswordMatch()" placeholder="Confirmar senha" class="inputs">
+                    <p id="error-message" style="color: red; display: none;">As senhas não coincidem!</p>
+                    <div class="termos">
+                        <input required type="checkbox" name="termos" id="termos">
+                        <label for="termos">Ao clicar no botão você concorda com os nossos <a href="#" id="abrir-termos">Termos de Serviço</a></label>
+                        <!-- Pop-up para Termos de Serviço -->
+                        <div id="popup-termos" class="popup">
+                            <div class="popup-content">
+                                <span id="fechar-popup" class="close">&times;</span>
+                                <h2>Termos de Serviço</h2>
+                                <p>
+                                    <ol style="text-align: start;">
+                                        <li>Professor Luis Fernando terá que nos dar 100</li>
+                                        <li>Bicicletas são um dos meios de locomoção já criados</li>
+                                        <li>Aqui já não tem nada mais para colocar!</li>
+                                        <p>Agora receba esse Lorem</p>
+                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum aspernatur error tempore, vero eveniet doloremque fugit animi quod alias voluptatem sit necessitatibus aliquid enim molestiae repudiandae odit ipsum id nihil.
+                                        Sint quas vero non nemo alias? Commodi illum et doloremque error provident, necessitatibus, atque enim animi pariatur ducimus modi ullam ratione nesciunt officiis voluptates quasi soluta nisi labore reprehenderit quod.
+                                        Sint impedit suscipit et. Dolor tempora nostrum enim omnis soluta reprehenderit adipisci atque iusto sapiente deleniti harum, consequuntur similique fuga! Qui ducimus error voluptatibus, excepturi neque sapiente ad natus blanditiis?
+                                        Architecto placeat eligendi alias totam error qui autem, rem non voluptate impedit magnam sed molestias. Eveniet autem aspernatur porro quaerat cumque magnam, consectetur expedita modi ea minima dolorem explicabo reprehenderit.
+                                        Quasi, aut minima asperiores explicabo facilis doloremque fugit ab odio natus! Aperiam nisi neque exercitationem accusamus? Expedita saepe cumque rerum voluptates natus, numquam earum aperiam cum eligendi quaerat porro? Eum.
+                                        Iste, quaerat quidem alias quia enim ipsam commodi qui, quis sunt quod sed delectus, earum ex incidunt blanditiis laboriosam molestiae. Reprehenderit totam distinctio nisi id quam dicta modi dolore ipsam?
+                                        Accusamus, ab expedita? Maiores voluptate sapiente cupiditate quis optio voluptatibus aut illum temporibus, harum et explicabo quae sint praesentium quod est necessitatibus aliquam sequi similique labore officia eligendi! Repudiandae, aliquid!
+                                        Nesciunt odit incidunt nostrum, iure eius fugiat perferendis, magni minima repellendus vero et autem omnis? Suscipit, pariatur ipsam harum reprehenderit, ad similique necessitatibus architecto minima enim praesentium voluptate molestias veritatis.
+                                    </ol>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="botoes">
+                        <input type="submit" value="Criar conta">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static "map/js/register.js" %}"></script>
+</body>
+</html>

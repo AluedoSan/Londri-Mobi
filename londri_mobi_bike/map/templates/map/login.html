@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'map/css/login.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: #8b1c1c;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1 style="text-align: center;">Bem-vindo ao <br> Londri Mobi</h1>
+    <div class="main">
+        <div class="container">
+            <h3>Gosta de economizar dinheiro e ainda quer ser saudável?</h3>
+            <h3>Junte-se a nós!</h3>
+            <div class="form">
+                <form action="/map/login/" method="post">
+                    {% csrf_token %}
+                    <input type="email" required class="inputs" name="email" id="email" placeholder="E-mail">
+                    <input type="password" required name="password" id="password" placeholder="Senha" class="inputs">
+                    <div class="termos">
+                        <input required type="checkbox" name="termos" id="termos">
+                        <label for="termos">Ao clicar no botão você concorda com os nossos <a href="#" id="abrir-termos">Termos de Serviço</a></label>
+                        <!-- Pop-up para Termos de Serviço -->
+                        <div id="popup-termos" class="popup">
+                            <div class="popup-content">
+                                <span id="fechar-popup" class="close">&times;</span>
+                                <h2>Termos de Serviço</h2>
+                                <p>
+                                    <ol style="text-align: start;">
+                                        <li>Professor Luis Fernando terá que nos dar 100</li>
+                                        <li>Bicicletas são um dos meios de locomoção já criados</li>
+                                        <li>Aqui já não tem nada mais para colocar!</li>
+                                    </ol>
+                                    <p>Agora receba esse lorem</p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, alias at ut quaerat magnam voluptatum temporibus sit corrupti harum odit? Pariatur et quasi necessitatibus non maxime totam porro animi dolorem.
+                                    Perferendis atque, ex eos quos porro reiciendis, at voluptate debitis neque nesciunt dolor. Repudiandae at accusantium nostrum eveniet aliquam eum incidunt veniam officia, fugiat dolore laudantium, neque, tempora reiciendis dolor.
+                                    Sunt, laborum, dignissimos exercitationem beatae esse reprehenderit porro fugit nihil nemo assumenda repellendus voluptatibus, ut qui magnam eum nisi reiciendis! Similique architecto nemo eaque amet ab magnam sunt voluptatem perspiciatis.
+                                    Illo, eum? Natus, animi a iste fuga assumenda, quam dolores alias enim in, molestias accusantium praesentium expedita aut laudantium temporibus cum tenetur voluptate aliquam distinctio. Illo, reiciendis eum. Quasi, porro?
+                                    Sit pariatur aut labore magnam alias natus deleniti eligendi, iste quam consectetur praesentium maxime culpa facere, laudantium molestiae voluptas ipsa hic obcaecati voluptatem optio? Animi aut aperiam incidunt corrupti quibusdam!
+                                    Ullam modi, atque repellat odit eius, omnis tempora ad, nihil quas excepturi doloribus. Labore autem sapiente cum similique, quasi accusantium quidem doloribus dignissimos tenetur perspiciatis ipsam dolores error fugiat fuga?
+                                    Sunt libero reprehenderit hic expedita, aspernatur laborum facere, tempore atque nobis omnis, quod quidem molestias est eaque voluptas laboriosam repudiandae nostrum explicabo necessitatibus placeat dicta! Autem magnam hic iste optio!
+                                    Maxime fugiat, non, dolor voluptate distinctio tempora corporis, facere dolores doloremque voluptatibus ut? Temporibus similique rem eveniet corporis reprehenderit inventore facilis ratione! Nobis obcaecati at fugit, nisi porro praesentium repellendus.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="botoes">
+                        <a href="{% url "map:register" %}">Criar conta</a>
+                        <input type="submit" value="Fazer login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="{% static "map/js/login.js" %}"></script>
+</body>
+</html>
