@@ -1,11 +1,23 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aluguel</title>
+    <link rel="stylesheet" href="{% static 'map/css/rent.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <title>Londri Mobi</title>
 </head>
 <body>
-    <h1>Aluguel de bikes</h1>
+    <nav>
+        <a href="javascript:history.back()">< Voltar</a>
+        <h1>Endereço 📍</h1>
+    </nav>
+    <h2 style="text-align: center;">Aluguel de bikes</h2>
+    <img src="{% static 'map/images/bicicleta.webp' %}"  alt="Bicicletas para Alugar">
+
+<script src="{% static 'map/js/rent.js' %}"></script>
 </body>
 </html>

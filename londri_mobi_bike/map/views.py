@@ -22,7 +22,10 @@ def index(request):
     folium.Marker(
         location=[-23.3094, -51.1595],
         tooltip='Ponto de Aluguel de Bicicletas',
-        popup='Aluguel de Bicicletas - Centro'
+        popup="""
+        <h1>Bicicleta</h1>
+        <p>Rua Sergipe 📍</p>
+"""
     ).add_to(m)
 
     # Renderiza o mapa como HTML
@@ -94,4 +97,9 @@ class RegisterView(View):
 
 class RentView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse("Chegoouou")
+        # Verifica se o usuário já está logado
+        if request.session.get('username'):
+            return render(request, "map/rent.html")
+        
+        return redirect("map:login")
+    

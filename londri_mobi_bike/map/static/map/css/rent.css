@@ -1,0 +1,31 @@
+* {
+    font-family: "Host Grotesk", sans-serif;
+    font-optical-sizing: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav a{
+    text-decoration: none;
+    color: #007aff;
+    
+}
+
+nav a:hover{
+    color: black;
+}
