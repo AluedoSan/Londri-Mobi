@@ -4,14 +4,33 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
-from django.contrib.auth import authenticate, login
 import map.models as ControlModels
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
+import folium
 
 def index(request):
-    return render(request, "map/index.html")
+    # Verifica se o usuário está autenticado ou se o usuário é anônimo
+    if not request.session.get('username'):
+        # Redireciona para a página de login se não estiver autenticado
+        return redirect('map:login')
 
+    # Cria um mapa centralizado em Londrina, PR
+    m = folium.Map(location=[-23.3117, -51.1597], zoom_start=14)
+
+    # Adiciona um marcador de exemplo
+    folium.Marker(
+        location=[-23.3094, -51.1595],
+        tooltip='Ponto de Aluguel de Bicicletas',
+        popup='Aluguel de Bicicletas - Centro'
+    ).add_to(m)
+
+    # Renderiza o mapa como HTML
+    map_html = m._repr_html_()  # Gera o HTML do mapa
+
+    # Passa o HTML do mapa para o template
+    context = {'map_html': map_html}
+    return render(request, "map/index.html", context)
 
 def logout_view(request):
     request.session.flush()  # Remove todos os dados da sessão
@@ -71,3 +90,8 @@ class RegisterView(View):
         create_user = ControlModels.RegisterUser.objects.create(name=user_name, email=email, password=password)
         create_user.save()
         return redirect("map:login")
+    
+
+class RentView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse("Chegoouou")

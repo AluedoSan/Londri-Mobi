@@ -11,16 +11,22 @@
     <title>Londri Mobi</title>
 </head>
 <body>
-    <h1>Londri Mobi</h1>
-    {% if request.session.username %}
-        <h1>Bem-vindo, {{ request.session.username }}!</h1>
-    {% else %}
-        <h1>Bem-vindo, visitante!</h1>
-    {% endif %}
-    <a href="{% url 'map:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
-    <form id="logout-form" action="{% url 'map:logout' %}" method="post" style="display: none;">
-        {% csrf_token %}
-    </form>    
-    <script src="{% static "map/js/index.js" %}"></script>
+    <div class="main">
+        <a href="{% url 'map:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
+        <form id="logout-form" action="{% url 'map:logout' %}" method="post" style="display: none;">
+            {% csrf_token %}
+        </form>
+    </div>
+    <!-- Container para o Mapa -->
+    <div class="map-wrapper">
+        <div id="map-container" style="width: 90%; height: 500px; margin: auto;">
+            {% if map_html %}
+                {{ map_html|safe }}
+            {% else %}
+                <p>O mapa não pôde ser carregado, atualize a página.</p>
+            {% endif %}
+        </div>        
+    </div>
+<script src="{% static 'map/js/index.js' %}"></script>
 </body>
 </html>
