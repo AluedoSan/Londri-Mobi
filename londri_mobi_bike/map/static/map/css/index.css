@@ -1,43 +1,125 @@
-* {
-    font-family: "Host Grotesk", sans-serif;
-    font-optical-sizing: auto;
-}
-
-body {
-    background: linear-gradient(0deg, rgba(219, 234, 240, 1) 0%, rgba(70, 118, 140, 1) 100%);
-    background-repeat: no-repeat;
+/* Reset para evitar overflow na visão mobile */
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Remove a barra de rolagem horizontal */
     margin: 0;
     padding: 0;
-    background-position: center;
-    height: 100vh;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
 }
 
-.main {
-    display: flex;
-    text-align: center;
-    background-color: rgb(0, 0, 0);
-    height: 10vh;
-    align-items: center;
-    justify-content: space-around;
+/* Ajuste no container principal */
+.content-wrapper {
+    max-width: 100%;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Garante que padding não expanda a largura */
 }
 
-.main a {
-    text-decoration: none;
-    color: white;
-    height: 100%;
+/* Ajuste do mapa */
+.map-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+#map-container {
+    width: 95%; /* Ajuste para ocupar menos espaço */
+    max-width: 600px; /* Limite máximo de largura para evitar overflow */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Barra de navegação responsiva */
+.main {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha para links */
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    height: auto; /* Ajusta a altura conforme o conteúdo */
     align-items: center;
+    justify-content: space-around;
+    padding: 10px 0; /* Ajuste de padding para mobile */
 }
 
-.main a:hover{
-    background-color: rgb(27, 26, 26);
+.main a {
+    flex: 1;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.container_aluguel{
-    background-color: antiquewhite;
+/* Ajuste da seção de locais */
+.locations {
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
 }

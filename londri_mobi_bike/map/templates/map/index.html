@@ -11,24 +11,49 @@
     <title>Londri Mobi</title>
 </head>
 <body>
+    <!-- Barra de navegação -->
     <div class="main">
         <a href="{% url 'map:logout' %}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
         <form id="logout-form" action="{% url 'map:logout' %}" method="post" style="display: none;">
             {% csrf_token %}
         </form>
         <a href="{% url "map:rent" %}">Alugar</a>
-        <a href="">Conta</a>
+        <a href="#">Conta</a>
     </div>
-    <!-- Container para o Mapa -->
-    <div class="map-wrapper">
-        <div id="map-container" style="width: 90%; height: 500px; margin: auto;">
-            {% if map_html %}
-                {{ map_html|safe }}
-            {% else %}
-                <p>O mapa não pôde ser carregado, atualize a página.</p>
-            {% endif %}
+
+    <!-- Container principal -->
+    <div class="content-wrapper">
+        <!-- Container para o Mapa -->
+        <div class="map-wrapper">
+            <div id="map-container">
+                {% if map_html %}
+                    {{ map_html|safe }}
+                {% else %}
+                    <p>O mapa não pôde ser carregado, atualize a página.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Seção de Locais -->
+        <div class="locations">
+            <h2>Pontos de Aluguel de Bicicletas</h2>
+            <form action="{% url "map:rent" %}" method="post">
+            {% csrf_token %}
+            <div class="custom-select" style="width:94%;">
+                <select name="loc" id="loc" onchange="redirectToRentPage()">
+                    <option value="">Selecione um local</option>
+                    <option value="catuai"><a href="{% url "map:rent" %}">Catuaí</a></option>
+                    <option value="lago">Lago 2</option>
+                    <option value="centro">Centro</option>
+                    <option value="jardim">Jardim Botânico</option>
+                    <option value="calcadao">Calçadão</option>
+                </select>
+                <input type="submit" value="Confirmar">
+            </form>
+            </div>
         </div>
     </div>
-<script src="{% static 'map/js/index.js' %}"></script>
+
+    <script src="{% static 'map/js/index.js' %}"></script>
 </body>
 </html>

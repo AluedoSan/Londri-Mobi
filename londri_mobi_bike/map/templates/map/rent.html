@@ -13,11 +13,47 @@
 <body>
     <nav>
         <a href="javascript:history.back()">< Voltar</a>
-        <h1>Endereço 📍</h1>
+        {% if context %}
+        <h1 style="text-align: center;">Local: {{ context }} 📍</h1>
+        {% endif %}
     </nav>
-    <h2 style="text-align: center;">Aluguel de bikes</h2>
-    <img src="{% static 'map/images/bicicleta.webp' %}"  alt="Bicicletas para Alugar">
+    <div class="imagem">
+        <img src="{% static 'map/images/bicicleta.webp' %}" width="75%" alt="Bicicletas para Alugar">
+    </div>
+    <div class="info">
+        <h3>Bicicleta</h3>
+        <p>R$2,50 a cada 30 minutos</p>
+    </div>
+    <div class="values">
+        <form action="" method="post">
+        <fieldset>
+            <legend>Tempo que deseja alugar:</legend>
+          
+            <div>
+              <input type="radio" id="30" name="tempo" value="30" checked />
+              <label for="30">30min</label>
+            </div>
+          
+            <div>
+              <input type="radio" id="1" name="tempo" value="1" />
+              <label for="1">1 hora</label>
+            </div>
+          
+            <div>
+              <input type="radio" id="130" name="tempo" value="130" />
+              <label for="130">1h30min</label>
+            </div>
 
+            <div>
+                <input type="radio" id="2" name="tempo" value="2" />
+                <label for="2">2 horas</label>
+            </div>
+            <div class="submit">
+                <input type="submit" value="Confirmar">
+            </div>
+        </fieldset>
+    </form>
+    </div>
 <script src="{% static 'map/js/rent.js' %}"></script>
 </body>
 </html>
