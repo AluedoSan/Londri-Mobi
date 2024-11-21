@@ -17,8 +17,22 @@
         <form id="logout-form" action="{% url 'map:logout' %}" method="post" style="display: none;">
             {% csrf_token %}
         </form>
-        <a href="{% url "map:rent" %}">Alugar</a>
-        <a href="#">Conta</a>
+        {% if rents %}
+        <div class="alugueis-ativos">
+            <h3>Aluguéis Ativos:</h3>
+            {% for rent in rents %}
+                <div class="aluguel">
+                    <p>Você alugou uma bicicleta na estação {{ rent.station.location }}.</p>
+                    <p>Por {{ rent.duration }} minutos.</p>
+                    <p>Início do aluguel: {{ rent.start_time|date:"d/m/Y H:i" }}</p>
+                    <p>Fim do aluguel: {{ rent.end_time|date:"d/m/Y H:i" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Você não tem nenhum aluguel ativo no momento.</p>
+    {% endif %}
+    
     </div>
 
     <!-- Container principal -->
@@ -37,12 +51,13 @@
         <!-- Seção de Locais -->
         <div class="locations">
             <h2>Pontos de Aluguel de Bicicletas</h2>
-            <form action="{% url "map:rent" %}" method="post">
+
+            <form action="{% url "map:redirect" %}" method="post">
             {% csrf_token %}
             <div class="custom-select" style="width:94%;">
                 <select name="loc" id="loc" onchange="redirectToRentPage()">
                     <option value="">Selecione um local</option>
-                    <option value="catuai"><a href="{% url "map:rent" %}">Catuaí</a></option>
+                    <option value="catuai">Catuaí</option>
                     <option value="lago">Lago 2</option>
                     <option value="centro">Centro</option>
                     <option value="jardim">Jardim Botânico</option>
