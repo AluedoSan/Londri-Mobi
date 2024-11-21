@@ -42,31 +42,31 @@ def index(request):
         {
             "location": [-23.3094, -51.1595],
             "tooltip": "Ponto de Aluguel de Bicicletas",
-            "popup": "<h1>Bicicleta</h1><p>Rua Sergipe 📍</p>",
+            "popup": "<h2>Rua Sergipe 📍</h2>",
             "bikes": f"{centro_bikes.total_bikes}"
         },
         {
             "location": [-23.3183, -51.1627],
             "tooltip": "Ponto de Aluguel no Lago 2",
-            "popup": "<h1>Bicicleta</h1><p>Lago 2 📍</p>",
+            "popup": "<h2>Lago 2 📍</h2>",
             "bikes": f"{lago_bikes.total_bikes}"
         },
         {
             "location": [-23.3542, -51.1958],
             "tooltip": "Ponto de Aluguel perto do Catuaí",
-            "popup": "<h1>Bicicleta</h1><p>Perto do Catuaí Shopping 📍</p>",
+            "popup": "<h2>Perto do Catuaí Shopping 📍</h2>",
             "bikes": f"{catuai_bikes.total_bikes}"
         },
         {
             "location": [-23.3431, -51.1626],
             "tooltip": "Ponto de Aluguel no Jardim Botânico",
-            "popup": "<h1>Bicicleta</h1><p>Jardim Botânico 📍</p>",
+            "popup": "<h2>Jardim Botânico 📍</h2>",
             "bikes": f"{jardim_bikes.total_bikes}"
         },
         {
             "location": [-23.3050, -51.1700],
             "tooltip": "Ponto de Aluguel - Calçadão",
-            "popup": "<h1>Bicicleta</h1><p>Calçadão de Londrina 📍</p>",
+            "popup": "<h2>Calçadão de Londrina 📍</h2>",
             "bikes": f"{calcadao_bikes.total_bikes}"
         }
     ]
